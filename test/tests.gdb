@@ -26,19 +26,56 @@
 echo ======================================================\n
 echo Running all tests..."\n\n
 
-test "PINA: 0xef =>  PORTB: 0x0e, PORTC: 0xf0"
-setPINA 0xef
+test "PINA: 0x0f =>  PORTC: 0x3f - gas full"
+setPINA 0x0f
 continue 5
-expectPORTB 0x0e
-expectPORTC 0xf0
+expectPORTC 0x3f
 checkResult
 
-test "PINA: 0xf5 =>  PORTB: 0x0f, PORTC: 0x50"
-setPINA 0xf5
+test "PINA: 0x0d =>  PORTC: 0x3f - not full, but meter still says so"
+setPINA 0x0d
 continue 5
-expectPORTB 0x0f
-expectPORTC 0x50
+expectPORTC 0x3f
 checkResult
+
+test "PINA: 0x0b =>  PORTC: 0x3e - full - 1"
+setPINA 0x0b
+continue 5
+expectPORTC 0x3e
+checkResult
+
+test "PINA: 0x08 =>  PORTC: 0x3c - full - 2"
+setPINA 0x08
+continue 5
+expectPORTC 0x3c
+checkResult
+
+test "PINA: 0x05 =>  PORTC: 0x38 - full - 3"
+setPINA 0x05
+continue 5
+expectPORTC 0x38
+checkResult
+
+test "PINA: 0x04 =>  PORTC: 0x70 - full - 4 with gas light"
+setPINA 0x04
+continue 5
+expectPORTC 0x70
+checkResult
+
+test "PINA: 0x01 =>  PORTC: 0x60 - full - 5 with gas light"
+setPINA 0x01
+continue 5
+expectPORTC 0x60
+checkResult
+
+test "PINA: 0x00 =>  PORTC: 0x40 - empty with gas light"
+setPINA 0x00
+continue 5
+expectPORTC 0x40
+checkResult
+
+
+
 
 
 # Add tests below
