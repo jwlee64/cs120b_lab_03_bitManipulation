@@ -74,8 +74,17 @@ continue 5
 expectPORTC 0x40
 checkResult
 
+test "PINA: 0x30 =>  PORTC: 0xC0 - empty with gas light and seatbelt light"
+setPINA 0x30
+continue 5
+expectPORTC 0xC0
+checkResult
 
-
+test "PINA: 0x70 =>  PORTC: 0x40 - empty with gas light and seatbelt fastened"
+setPINA 0x70
+continue 5
+expectPORTC 0x40
+checkResult
 
 
 # Add tests below
